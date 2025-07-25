@@ -1,0 +1,7 @@
+package spring_blogs.spring_blogs.exception.exceptions;
+
+public class EmailAlreadyExistsException extends RuntimeException {
+    public EmailAlreadyExistsException(String message) {
+        super(message);
+    }
+}

@@ -6,9 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import spring_blogs.spring_blogs.exception.exceptions.BlogNotFoundException;
-import spring_blogs.spring_blogs.exception.exceptions.CommentNotFoundException;
-import spring_blogs.spring_blogs.exception.exceptions.InternalServerException;
+import spring_blogs.spring_blogs.exception.exceptions.*;
 
 import java.time.ZonedDateTime;
 import java.util.HashMap;
@@ -72,5 +70,27 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+
+    @ExceptionHandler(EmailAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> EmailAlreadyExistsException(EmailAlreadyExistsException exception) {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", String.valueOf(HttpStatus.CONFLICT.value()));
+        response.put("message", exception.getMessage());
+        response.put("error", "Conflict");
+
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(UnauthorizedExceptionMessage.class)
+    public ResponseEntity<Map<String, String>> UnauthorizedException(UnauthorizedExceptionMessage exception) {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", String.valueOf(HttpStatus.UNAUTHORIZED.value()));
+        response.put("message", exception.getMessage());
+        response.put("error", "Unauthorized");
+
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
 
 }

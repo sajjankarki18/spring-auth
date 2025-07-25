@@ -36,5 +36,4 @@ public class Comment {
     private Date updated_at;
 
     private Date deleted_at;
-
 }

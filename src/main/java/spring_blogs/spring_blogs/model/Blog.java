@@ -8,7 +8,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import spring_blogs.spring_blogs.Enum.BlogStatusEnum;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +22,7 @@ import java.util.UUID;
 public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(columnDefinition = "UUID")
     private UUID id;
 
     @Column(nullable = false)
@@ -45,5 +45,6 @@ public class Blog {
     @UpdateTimestamp
     private Date updated_at;
 
+    @Column(name = "deleted_at")
     private Date deleted_at;
 }
