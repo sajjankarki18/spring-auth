@@ -7,7 +7,6 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import spring_blogs.spring_blogs.Enum.AuthProviderTypeEnum;
-
 import java.util.Date;
 import java.util.UUID;
 

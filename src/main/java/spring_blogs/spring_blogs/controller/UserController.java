@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import spring_blogs.spring_blogs.dto.authDto.AuthMessageResponseDto;
 import spring_blogs.spring_blogs.dto.authDto.LoginUserDto;
 import spring_blogs.spring_blogs.dto.authDto.RegisterUserDto;
+import spring_blogs.spring_blogs.dto.authDto.RegisteredUserMessageDto;
 import spring_blogs.spring_blogs.service.UserService;
 
 @RestController
@@ -22,14 +23,14 @@ public class UserController {
 
     /* register a new account */
     @PostMapping("/register")
-    private ResponseEntity<AuthMessageResponseDto> register(@Valid @RequestBody RegisterUserDto userDto) {
-        AuthMessageResponseDto user = this.userService.register(userDto);
+    public ResponseEntity<RegisteredUserMessageDto> register(@Valid @RequestBody RegisterUserDto userDto) {
+        RegisteredUserMessageDto user = this.userService.register(userDto);
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
     /* login account */
     @PostMapping("/login")
-    private ResponseEntity<AuthMessageResponseDto> login(@Valid @RequestBody LoginUserDto userDto) {
+    public ResponseEntity<AuthMessageResponseDto> login(@Valid @RequestBody LoginUserDto userDto) {
         AuthMessageResponseDto user = this.userService.login(userDto);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
